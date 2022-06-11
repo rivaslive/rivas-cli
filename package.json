@@ -1,0 +1,41 @@
+{
+  "name": "rivas-cli",
+  "version": "0.0.1",
+  "keywords": [
+    "nodejs",
+    "node",
+    "create",
+    "project",
+    "rivas",
+    "typescript",
+    "node-cli",
+    "reactjs"
+  ],
+  "description": "CLI for build components for Nodejs and React with Atomic Design",
+  "bin": {
+    "rivas-cli": "index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "git-commit": "git add -A . && git commit -a -m 'rivas-cli update'",
+    "git-push": "git push origin master",
+    "deploy": "yarn git-commit && yarn git-push",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "prettier": "^2.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rivaslive/rivas-cli.git"
+  },
+  "author": "rivaslive",
+  "license": "ISC"
+}

@@ -1,3 +1,5 @@
+const customPath = '=== Created in custom path ===';
+
 const reactQuestions = {
   framework: {
     type: 'list',
@@ -22,8 +24,14 @@ const reactQuestions = {
       'src/components/Atoms',
       'src/components/Molecules',
       'src/components/Organisms',
-      'src/components/Template'
+      'src/components/Template',
+      customPath
     ]
+  },
+  locationPath: {
+    type: 'input',
+    name: 'locationPath',
+    message: 'Insert location path.'
   },
   language: {
     type: 'list',
@@ -42,13 +50,18 @@ const reactQuestions = {
     message: 'Select template.',
     choices: [
       {
-        name: 'Atomic Design',
-        value: 'atomic'
+        name: 'Component',
+        value: 'component'
+      },
+      {
+        name: 'Storybook',
+        value: 'storybook'
       }
     ]
   }
 };
 
 module.exports = {
+  customPath,
   reactQuestions
 };

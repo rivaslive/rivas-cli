@@ -1,3 +1,15 @@
+const help = `
+Welcome to rivas-cli!
+
+List of resolve package:
+
+- rivas-cli [patter] [component] [language]
+
+* [Patter]:    Patter Design is Enum component | storybook.
+* [component]:      The component name.
+* [language]:  Is a language valid for extension file Enum. js | ts | tsx | typescript | javascript | --ts | --tsx | --js | --typescript | --javascript.
+`
+
 const resolveEnv = {
   react: 'react',
   reactjs: 'react',
@@ -7,6 +19,10 @@ const resolveEnv = {
 
 const resolveTemplate = {
   react: {
+    component: 'component',
+    storybook: 'storybook',
+  },
+  node: {
     atomic: 'atomic'
   }
 };
@@ -27,6 +43,7 @@ const resolveLanguage = {
   javascript: 'javascript',
   js: 'javascript',
   '--js': 'javascript',
+  '--jsx': 'javascript',
   '--javascript': 'javascript',
   // ts paths
   tsx: 'typescript',
@@ -34,9 +51,11 @@ const resolveLanguage = {
   typescript: 'typescript',
   '--typescript': 'typescript',
   '--ts': 'typescript',
+  '--tsx': 'typescript',
 }
 
 module.exports = {
+  help,
   resolveEnv,
   resolveLanguage,
   resolveTemplate,

@@ -2,31 +2,35 @@
 'use strict';
 
 const inquirer = require('inquirer');
-// const { spawnSync } = require('child_process');
-// const shell = require('shelljs');
+const { convertToCamelCase } = require('./utils');
+const { reactQuestions } = require('./questions');
+const { createReactComponent } = require('./actions/react');
 const {
   resolveEnv,
   resolveTemplate,
-  resolveLanguage
+  resolveLanguage,
+  help
 } = require('./config');
-const { createReactComponent } = require('./actions/react');
-const { reactQuestions } = require('./questions');
 
-const [, , frameworkArg, templateArg, componentNameArg, languageArg] =
-  process.argv;
+const [, , templateArg, componentNameArg, languageArg] = process.argv;
+
+const frameworkArg = 'react';
 
 (() => {
+  if (templateArg === '--help') {
+    return console.log(help);
+  }
+
   const _language = resolveLanguage[languageArg];
   const _framework = resolveEnv[frameworkArg];
   let _template = resolveTemplate[_framework];
+  const _componentName = convertToCamelCase(componentNameArg);
 
   if (_template) {
     _template = _template[templateArg];
   }
 
-  console.log(componentNameArg);
-
-  if (_framework && _template && _language && componentNameArg) {
+  if (_framework && _template && _language && _componentName) {
     inquirer
       .prompt([reactQuestions.location])
       .then(({ location }) => {
@@ -34,7 +38,7 @@ const [, , frameworkArg, templateArg, componentNameArg, languageArg] =
           template: _template,
           language: _language,
           framework: _framework,
-          componentName: componentNameArg,
+          componentName: _componentName,
           location
         });
       })
@@ -49,7 +53,7 @@ const [, , frameworkArg, templateArg, componentNameArg, languageArg] =
           template: _template,
           language: _language,
           framework: _framework,
-          componentName,
+          componentName: convertToCamelCase(componentName),
           location
         });
       })
@@ -68,7 +72,7 @@ const [, , frameworkArg, templateArg, componentNameArg, languageArg] =
           template: _template,
           language,
           framework: _framework,
-          componentName,
+          componentName: convertToCamelCase(componentName),
           location
         });
       })
@@ -88,7 +92,7 @@ const [, , frameworkArg, templateArg, componentNameArg, languageArg] =
           template,
           language,
           framework: _framework,
-          componentName,
+          componentName: convertToCamelCase(componentName),
           location
         });
       })
@@ -109,7 +113,7 @@ const [, , frameworkArg, templateArg, componentNameArg, languageArg] =
           template,
           language,
           framework,
-          componentName,
+          componentName: convertToCamelCase(componentName),
           location
         });
       })

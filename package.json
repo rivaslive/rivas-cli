@@ -35,6 +35,7 @@
     "type": "git",
     "url": "git+https://github.com/rivaslive/rivas-cli.git"
   },
+  "homepage": "https://rivas-cli.vercel.app/",
   "author": "rivaslive",
   "license": "ISC"
 }

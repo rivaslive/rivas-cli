@@ -9,7 +9,7 @@ export default function Home() {
         <title>rivas-cli</title>
         <meta
           name="description"
-          content="CLI for build components for Nodejs and React with Atomic Designp"
+          content="CLI for build components for React with Atomic Design"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -25,45 +25,52 @@ export default function Home() {
           <pre className={styles.code}>$ npx rivas-cli</pre>
           They will have a series of steps to complete your action
           <p>
-            <b>step 1:</b> Select template
+            <b>step 1:</b> Insert name of the component
+          </p>
+          <Image src={require('../public/step-1.png')} placeholder="blur" />
+          <p>
+            <b>step 2:</b> Select language
           </p>
           <ul>
             <li>
-              <b>Component:</b> For new component
+              <b>Typescript:</b> typescript, ts, tsx, --typescript, --ts, --tsx
             </li>
             <li>
-              <b>Storybook:</b> For new story with storybook
+              <b>Javascript:</b> javascript, js, jsx, --javascript, --js, --jsx
             </li>
           </ul>
-          <Image src={require('../public/step-1.png')} placeholder="blur" />
+          <Image src={require('../public/step-2.png')} placeholder="blur" />
           <p>
-            <b>step 2:</b> Select path location
+            <b>step 3:</b> Select path location
           </p>
           <p>
             If there is no valid address for you select{' '}
             <b>=== Created in custom path ===</b>
           </p>
-          <Image src={require('../public/step-2.png')} placeholder="blur" />
-          <p>
-            <b>step 3:</b> Select language
-          </p>
-          <p>Language for your component</p>
-          <p>
-            <b>step 4:</b> Insert component name
-          </p>
-          <p>Name for your files created</p>
+          <Image src={require('../public/step-3.png')} placeholder="blur" />
         </p>
-
 
         <h2 className={styles.title2}>Advance use</h2>
         <p>
           To skip the previous steps you can use the arguments.
-          <pre className={styles.code}>$ npx rivas-cli [patter] [component] [language]</pre>
+          <pre className={styles.code}>
+            $ npx rivas-cli [name] [language] [path]
+          </pre>
         </p>
 
         <p>
           <b>Example</b>
-          <pre className={styles.code}>$ npx rivas-cli component MyComponent --tsx</pre>
+          <pre className={styles.code}>
+            $ npx rivas-cli MyComponent --tsx atoms
+          </pre>
+
+          <pre className={styles.code}>
+            $ npx rivas-cli MyComponent --tsx molecules
+          </pre>
+
+          <pre className={styles.code}>
+            $ npx rivas-cli MyComponent --tsx custom
+          </pre>
         </p>
 
         <h2 className={styles.title2}>Help</h2>

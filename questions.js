@@ -1,21 +1,6 @@
 const customPath = '=== Created in custom path ===';
 
 const reactQuestions = {
-  framework: {
-    type: 'list',
-    name: 'framework',
-    message: 'Select your framework.',
-    choices: [
-      {
-        name: 'Reactjs',
-        value: 'react'
-      },
-      {
-        name: 'Nodejs (building)',
-        value: 'node'
-      }
-    ]
-  },
   location: {
     type: 'list',
     name: 'location',
@@ -37,28 +22,13 @@ const reactQuestions = {
     type: 'list',
     name: 'language',
     message: 'Select language.',
-    choices: ['javascript', 'typescript']
+    choices: ['typescript', 'javascript']
   },
   componentName: {
     type: 'input',
     name: 'componentName',
     message: 'Insert component name.'
   },
-  template: {
-    type: 'list',
-    name: 'template',
-    message: 'Select template.',
-    choices: [
-      {
-        name: 'Component',
-        value: 'component'
-      },
-      {
-        name: 'Storybook',
-        value: 'storybook'
-      }
-    ]
-  }
 };
 
 module.exports = {

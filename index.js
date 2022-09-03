@@ -3,122 +3,69 @@
 
 const inquirer = require('inquirer');
 const { convertToCamelCase } = require('./utils');
-const { reactQuestions } = require('./questions');
-const { createReactComponent } = require('./actions/react');
-const {
-  resolveEnv,
-  resolveTemplate,
-  resolveLanguage,
-  help
-} = require('./config');
+const { reactQuestions, customPath } = require('./questions');
+const { createComponent } = require('./actions/react');
+const { resolveLanguage, resolveLocation, help } = require('./config');
 
-const [, , templateArg, componentNameArg, languageArg] = process.argv;
+/*
+ * componentNameArg: name of component
+ * languageArg: javascript, js, jsx --js, --jsx, --javascript, typescript, ts, tsx, --ts, --tsx, --typescript
+ * locationArg: atoms, molecules, organisms, template, custom
+ */
+const [, , componentNameArg, languageArg, locationArg] = process.argv;
 
-const frameworkArg = 'react';
-
-(() => {
-  if (templateArg === '--help') {
+(async () => {
+  if (componentNameArg === '--help') {
     return console.log(help);
   }
 
-  const _language = resolveLanguage[languageArg];
-  const _framework = resolveEnv[frameworkArg];
-  let _template = resolveTemplate[_framework];
-  const _componentName = convertToCamelCase(componentNameArg);
+  let _componentName = convertToCamelCase(componentNameArg);
+  let _language = resolveLanguage[languageArg];
+  let _location = resolveLocation[locationArg];
+  let iterationRequest = true;
 
-  if (_template) {
-    _template = _template[templateArg];
+  while (iterationRequest) {
+    if (!_componentName) {
+      try {
+        const { componentName } = await inquirer.prompt([
+          reactQuestions.componentName
+        ]);
+        _componentName = convertToCamelCase(componentName);
+      } catch (err) {
+        console.log(err?.message);
+      }
+    } else if (!_language) {
+      try {
+        const { language } = await inquirer.prompt([reactQuestions.language]);
+        _language = language;
+      } catch (err) {
+        console.log(err?.message);
+      }
+    } else if (!_location) {
+      try {
+        const { location } = await inquirer.prompt([reactQuestions.location]);
+        _location = location;
+      } catch (err) {
+        console.log(err?.message);
+      }
+    } else if (_location === customPath) {
+      try {
+        const { locationPath } = await inquirer.prompt([
+          reactQuestions.locationPath
+        ]);
+        _location = locationPath;
+      } catch (err) {
+        console.log(err?.message);
+      }
+    } else {
+      iterationRequest = false;
+    }
   }
 
-  if (_framework && _template && _language && _componentName) {
-    inquirer
-      .prompt([reactQuestions.location])
-      .then(({ location }) => {
-        createReactComponent({
-          template: _template,
-          language: _language,
-          framework: _framework,
-          componentName: _componentName,
-          location
-        });
-      })
-      .catch((err) => {
-        console.log(err?.message);
-      });
-  } else if (_framework && _template && _language) {
-    inquirer
-      .prompt([reactQuestions.location, reactQuestions.componentName])
-      .then(({ location, componentName }) => {
-        createReactComponent({
-          template: _template,
-          language: _language,
-          framework: _framework,
-          componentName: convertToCamelCase(componentName),
-          location
-        });
-      })
-      .catch((err) => {
-        console.log(err?.message);
-      });
-  } else if (_framework && _template) {
-    inquirer
-      .prompt([
-        reactQuestions.location,
-        reactQuestions.componentName,
-        reactQuestions.language
-      ])
-      .then(({ location, componentName, language }) => {
-        createReactComponent({
-          template: _template,
-          language,
-          framework: _framework,
-          componentName: convertToCamelCase(componentName),
-          location
-        });
-      })
-      .catch((err) => {
-        console.log(err?.message);
-      });
-  } else if (_framework) {
-    inquirer
-      .prompt([
-        reactQuestions.template,
-        reactQuestions.location,
-        reactQuestions.language,
-        reactQuestions.componentName
-      ])
-      .then(({ location, componentName, language, template }) => {
-        createReactComponent({
-          template,
-          language,
-          framework: _framework,
-          componentName: convertToCamelCase(componentName),
-          location
-        });
-      })
-      .catch((err) => {
-        console.log(err?.message);
-      });
-  } else {
-    inquirer
-      .prompt([
-        reactQuestions.framework,
-        reactQuestions.template,
-        reactQuestions.location,
-        reactQuestions.language,
-        reactQuestions.componentName
-      ])
-      .then(({ framework, template, location, componentName, language }) => {
-        createReactComponent({
-          template,
-          language,
-          framework,
-          componentName: convertToCamelCase(componentName),
-          location
-        });
-      })
-      .catch((err) => {
-        console.log(err?.message);
-      });
-  }
+  createComponent({
+    componentName: _componentName,
+    framework: 'react',
+    language: _language,
+    location: _location
+  });
 })();

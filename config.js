@@ -1,63 +1,69 @@
+const {customPath} = require('./questions');
 const help = `
 Welcome to rivas-cli!
 
 List of resolve package:
 
-- rivas-cli [patter] [component] [language]
+- rivas-cli [name] [template] [path]
 
-* [Patter]:    Patter Design is Enum component | storybook.
-* [component]:      The component name.
-* [language]:  Is a language valid for extension file Enum. js | ts | tsx | typescript | javascript | --ts | --tsx | --js | --typescript | --javascript.
+* [name]:       The component name.
+* [language]:   Enum js | ts | tsx | typescript | javascript | --ts | --tsx | --js | --typescript | --javascript.
+* [path]:       Path where we will create the component.
 `
 
-const resolveEnv = {
+const resolveTemplate = {
   react: 'react',
   reactjs: 'react',
-  node: 'node',
-  nodejs: 'node'
-};
-
-const resolveTemplate = {
-  react: {
-    component: 'component',
-    storybook: 'storybook',
-  },
-  node: {
-    atomic: 'atomic'
-  }
+  'ts-react': 'react',
+  'ts-reactjs': 'react'
 };
 
 const resolveExtension = {
+  // javascript
   javascript: 'js',
-  typescript: 'tsx',
   js: 'js',
+  jsx: 'js',
+  '--js': 'js',
+  '--jsx': 'js',
+  '--javascript': 'js',
+  // typescript
+  typescript: 'tsx',
   tsx: 'tsx',
   ts: 'tsx',
   '--typescript': 'tsx',
-  '--javascript': 'tsx',
   '--ts': 'tsx',
-  '--js': 'tsx',
+  '--tsx': 'tsx',
 }
 
 const resolveLanguage = {
+  // javascript
   javascript: 'javascript',
   js: 'javascript',
+  jsx: 'javascript',
   '--js': 'javascript',
   '--jsx': 'javascript',
   '--javascript': 'javascript',
-  // ts paths
+  // typescript
+  typescript: 'typescript',
   tsx: 'typescript',
   ts: 'typescript',
-  typescript: 'typescript',
   '--typescript': 'typescript',
   '--ts': 'typescript',
   '--tsx': 'typescript',
 }
 
+const resolveLocation = {
+  'atoms': 'src/components/Atoms',
+  'molecules': 'src/components/Molecules',
+  'organisms': 'src/components/Organisms',
+  'templates': 'src/components/Template',
+  'custom': customPath,
+}
+
 module.exports = {
   help,
-  resolveEnv,
-  resolveLanguage,
   resolveTemplate,
+  resolveLanguage,
+  resolveLocation,
   resolveExtension
 };

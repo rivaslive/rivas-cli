@@ -9,7 +9,7 @@ const reactQuestions = {
       'src/components/Atoms',
       'src/components/Molecules',
       'src/components/Organisms',
-      'src/components/Template',
+      'src/components/Templates',
       customPath
     ]
   },

@@ -11,12 +11,12 @@ export default function Home() {
           name="description"
           content="CLI for build components for React with Atomic Design"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico"/>
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <span style={{ color: '#0072F5' }}>rivas-cli</span>
+          Welcome to <span style={{color: '#0072F5'}}>rivas-cli</span>
         </h1>
 
         <h2 className={styles.title2}>Default use</h2>
@@ -27,7 +27,7 @@ export default function Home() {
           <p>
             <b>step 1:</b> Insert name of the component
           </p>
-          <Image src={require('../public/step-1.png')} placeholder="blur" />
+          <Image src={require('../public/step-1.png')} placeholder="blur"/>
           <p>
             <b>step 2:</b> Select language
           </p>
@@ -39,15 +39,17 @@ export default function Home() {
               <b>Javascript:</b> javascript, js, jsx, --javascript, --js, --jsx
             </li>
           </ul>
-          <Image src={require('../public/step-2.png')} placeholder="blur" />
+          <Image src={require('../public/step-2.png')} placeholder="blur"/>
           <p>
             <b>step 3:</b> Select path location
           </p>
+          <p>short: atoms, molecules, organisms, templates, Atoms, Molecules, Organisms, Templates, a, m, o, t, -a, -m,
+            -o, -t, --a, --m, --o, --t</p>
           <p>
             If there is no valid address for you select{' '}
             <b>=== Created in custom path ===</b>
           </p>
-          <Image src={require('../public/step-3.png')} placeholder="blur" />
+          <Image src={require('../public/step-3.png')} placeholder="blur"/>
         </p>
 
         <h2 className={styles.title2}>Advance use</h2>
@@ -84,7 +86,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           Created by
-          <span style={{ marginLeft: 5 }}>
+          <span style={{marginLeft: 5}}>
             <b>rivaslive</b>
           </span>
         </a>

@@ -56,7 +56,32 @@ const resolveLocation = {
   'atoms': 'src/components/Atoms',
   'molecules': 'src/components/Molecules',
   'organisms': 'src/components/Organisms',
-  'templates': 'src/components/Template',
+  'templates': 'src/components/Templates',
+
+  'a': 'src/components/Atoms',
+  'm': 'src/components/Molecules',
+  'o': 'src/components/Organisms',
+  't': 'src/components/Templates',
+
+  'A': 'src/components/Atoms',
+  'M': 'src/components/Molecules',
+  'O': 'src/components/Organisms',
+  'T': 'src/components/Templates',
+
+  '-a': 'src/components/Atoms',
+  '-m': 'src/components/Molecules',
+  '-o': 'src/components/Organisms',
+  '-t': 'src/components/Templates',
+
+  '--a': 'src/components/Atoms',
+  '--m': 'src/components/Molecules',
+  '--o': 'src/components/Organisms',
+  '--t': 'src/components/Templates',
+
+  'Atoms': 'src/components/Atoms',
+  'Molecules': 'src/components/Molecules',
+  'Organisms': 'src/components/Organisms',
+  'Templates': 'src/components/Templates',
   'custom': customPath,
 }
 
